@@ -5,8 +5,6 @@ import { useRouter } from 'next/navigation';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 
-
-
 const Page = () => {
     const router = useRouter();
 

@@ -9,6 +9,12 @@ const Page = () => {
         if (!token) {
             router.push('http://localhost:3000/Login')
         }
+        else {
+            const userData = parseToken(token);
+            if (!userData || userData.role !== 'admin') {
+                router.push('http://localhost:3000');
+            }
+        }
 
     }, [])
 
@@ -16,5 +22,15 @@ const Page = () => {
         <div className='text-4xl mt-20 font-extrabold uppercase flex justify-center items-center'>Shopping Arrivals are comming Soon</div>
     )
 }
+
+const parseToken = (token: any) => {
+    try {
+        const decodedToken = atob(token.split('.')[1]);
+        return JSON.parse(decodedToken);
+    } catch (error) {
+        console.error('Error parsing token:', error);
+        return null;
+    }
+};
 
 export default Page
