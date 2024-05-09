@@ -13,6 +13,18 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'i.imgur.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'placeimg.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'via.placeholder.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'assets-es.imgfoot.com'
             }
         ]
 

@@ -14,6 +14,8 @@ const Page = () => {
     const { id } = useParams();
     const [data, setData] = useState([]);
 
+
+
     useEffect(() => {
         const fetchSingleApi = async () => {
             try {
@@ -30,6 +32,56 @@ const Page = () => {
             fetchSingleApi();
         }
     }, [id]);
+
+    const addToCart = async () => {
+        try {
+            const response = await fetch('https://dummyjson.com/carts/add', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    userId: 1,
+                    products: [
+                        {
+                            id: data.id,
+                            quantity: 1,
+                        }
+                    ]
+                })
+            });
+
+            const result = await response.json();
+            console.log(result);
+            if (response.ok) {
+                toast.success("Item is added to Cart", {
+                    position: 'top-center',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                setTimeout(() => {
+                    router.push('http://localhost:3000/Cart')
+                }, 1000);
+            } else {
+                toast.error(result.error, {
+                    position: 'top-center',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+
 
     return (
         <div className={montserrat.className}>

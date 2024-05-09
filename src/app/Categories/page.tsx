@@ -9,7 +9,7 @@ const monserrat = Montserrat({
 })
 
 async function getData() {
-    const res = await fetch('https://api.escuelajs.co/api/v1/categories?limit=10');
+    const res = await fetch('https://api.escuelajs.co/api/v1/categories?limit=6');
 
     if (!res.ok) {
         throw new Error('Failed to fetched Categories')
@@ -31,10 +31,12 @@ const Page = async () => {
                         {categories.map((item: any, index: any) => {
                             return <div key={index} className="xl:w-1/3 text-center md:w-1/2 p-4">
                                 <div className="border border-gray-200 p-6 bg-gray-100 hover:bg-gray-200">
-                                    <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-gray-300 text-indigo-500 mb-4">
-                                        <Image src={item.image} height={400} width={600} alt='' className='h-full w-full object-cover object-center rounded-full' />
-                                    </div>
-                                    <h2 className="text-lg text-gray-900 font-medium title-font mb-2">{item.name}</h2>                                </div>
+                                    <Link href={`ProductCategories/${item.id}`}>
+                                        <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-gray-300 text-indigo-500 mb-4">
+                                            <Image src={item.image} height={400} width={600} alt='' className='h-full w-full object-cover object-center rounded-full' />
+                                        </div>
+                                        <h2 className="text-lg text-gray-900 font-medium title-font mb-2">{item.name}</h2>
+                                    </Link>                              </div>
                             </div>
                         })}
                     </div>

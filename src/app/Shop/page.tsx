@@ -7,17 +7,16 @@ const Page = () => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (!token) {
-            router.push('http://localhost:3000/Login')
-        }
-        else {
+            router.push('http://localhost:3000/Login');
+        } else {
             const userData = parseToken(token);
-            if (!userData || userData.role !== 'admin') {
+            if (userData && userData.role === 'admin') {
+                return;
+            } else {
                 router.push('http://localhost:3000');
             }
         }
-
-    }, [])
-
+    }, []);
     return (
         <div className='text-4xl mt-20 font-extrabold uppercase flex justify-center items-center'>Shopping Arrivals are comming Soon</div>
     )
