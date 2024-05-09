@@ -103,12 +103,12 @@ export default function Index() {
                                 <div className="hidden lg:flex items-center space-x-4 xl:space-x-8">
                                     <button aria-label="view login" className="text-gray-800 ">
                                         <Link href={'/Login'}>
-                                            {localStorage.getItem('token') ? (
+                                            {typeof window !== 'undefined' && localStorage.getItem('token') ? (
                                                 <button onClick={ControlLogout} className="bg-purple-600 text-white py-2 px-8">Logout</button>
                                             ) : (
                                                 <button className="bg-purple-600 text-white py-2 px-8">Login</button>
-                                            )}                                        </Link>
-
+                                            )}
+                                        </Link>
                                     </button>
                                     <button aria-label="go to cart" className="text-gray-800 ">
                                         <Link href={'/Cart'}>
